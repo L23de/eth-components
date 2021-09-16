@@ -19,13 +19,8 @@ public class App {
         // Each element in the ledger is a concatenated string of the balance and
         // transaction
         ArrayList<Account> ledger = Input.parseFile(args[0]);
-        System.out.println(ledger.toString());
-        System.out.println(Hash.getMerkleRoot(ledger, 0, ledger.size() - 1));
-    }
-
-    public static void printArray(int A[], int size) {
-        for (int i = 0; i < size; i++)
-            System.out.print(A[i] + " ");
-        System.out.println();
+        // Print out the ledger (ArrayList) using prebuild toString() method
+        // System.out.println(ledger.toString());
+        System.out.println("Merkle Root: " + Hash.getMerkleRoot(ledger, 0, ledger.size() - 1));
     }
 }

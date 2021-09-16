@@ -21,16 +21,18 @@ public class Hash {
         int mid = (start + end) / 2;
 
         // Gets the left and right hashes of the tree
-        // "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" is the
-        // hash of an empty string
         String leftHash = getMerkleRoot(ledger, start, mid);
         String rightHash = getMerkleRoot(ledger, mid + 1, end);
         String concatHash = leftHash + rightHash;
 
+        // If both left and right hashes are empty (Hash attempt of padded values),
+        // return nothing, since the hash of the empty string "" is still valid and it
+        // would modify the final resulting hash
         if (concatHash == "") {
             return "";
         }
 
+        // Get the SHA-256 hash of the leaf
         try {
             return Encrypt.toHexString(Encrypt.getSHA(concatHash));
         } catch (NoSuchAlgorithmException e) {
