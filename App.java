@@ -7,16 +7,18 @@ public class App {
         if (argLength > 1) {
             System.err.println(
                     "Too many arguments were provided. Please only provide the filename with a list of addresses and balances");
+            System.exit(1);
         } else if (argLength < 1) {
             System.err.println(
                     "Not enough arguments were provided. Please provide the filename with a list of addresses and balances");
-            // System.exit(1);
+            System.exit(1);
         }
 
         // Each element in the ledger is a concatenated string of the balance and
         // transaction
         ArrayList<Account> ledger = Input.parseFile(args[0]);
-        ledger.toString();
+        System.out.println(ledger.toString());
+        System.out.println(Hash.getMerkleRoot(ledger, 0, ledger.size() - 1));
     }
 
     public static void printArray(int A[], int size) {
