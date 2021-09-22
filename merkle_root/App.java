@@ -1,4 +1,4 @@
-package code;
+package merkle_root.code;
 
 import java.util.ArrayList;
 
@@ -20,7 +20,7 @@ public class App {
         // transaction
         ArrayList<Account> ledger = Input.parseFile(args[0]);
         // Print out the ledger (ArrayList) using prebuild toString() method
-        // System.out.println(ledger.toString());
+        System.out.println(ledger.toString());
         System.out.println("Merkle Root: " + Hash.getMerkleRoot(ledger, 0, ledger.size() - 1));
     }
 }

@@ -1,4 +1,4 @@
-package code;
+package merkle_root.code;
 
 import java.security.NoSuchAlgorithmException;
 
