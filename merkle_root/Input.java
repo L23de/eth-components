@@ -1,4 +1,4 @@
-package merkle_root.code;
+package merkle_root;
 
 import java.io.File;
 import java.io.FileNotFoundException;

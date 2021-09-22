@@ -1,4 +1,4 @@
-package merkle_root.code;
+package merkle_root;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
