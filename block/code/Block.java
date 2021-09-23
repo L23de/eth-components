@@ -1,5 +1,6 @@
-package block;
+package block.code;
 
+import merkle_root.code.*;
 import java.sql.Timestamp;
 
 public class Block {

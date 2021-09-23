@@ -1,2 +1,4 @@
 #!/bin/bash
-java code/App ledger.txt
+cd ..
+java merkle_root/code/App merkle_root/ledger.txt
+cd merkle_root
