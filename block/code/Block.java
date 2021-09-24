@@ -5,41 +5,48 @@ import merkle_root.code.*;
 import java.math.BigInteger;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
+import java.util.ArrayList;
 
 public class Block {
-    protected static final double SUCCESS_RATE = 0.5;
+    protected final double SUCCESS_RATE = 0.5;
 
     String prevHash;
     String merkleRoot;
     long timestamp;
-    double diffTarget;
+    BigInteger diffTarget;
     String nonce;
+    ArrayList<Account> accountList;
 
-    public Block(String prevHash, String merkleRoot, String nonce) {
+    public Block(String prevHash, String merkleRoot, String nonce, ArrayList<Account> acc) {
         this.prevHash = prevHash;
         this.merkleRoot = merkleRoot; // Set merkle root
         timestamp = System.currentTimeMillis() / 1000L; // unix time in seconds
-        this.diffTarget = 0.5;
+        diffTarget = BigInteger.ONE.shiftLeft(256).subtract(BigInteger.ONE)
+                .divide(new BigInteger(String.valueOf((int) (1 / SUCCESS_RATE))));
         this.nonce = nonce;
+        accountList = acc;
     }
 
-    public static Boolean checkNonce(String merkleRoot, String nonce) {
+    public String toString() {
+        return String.format(
+                "\t\tPrevious Hash: %s\n\t\tMerkle Root: %s\n\t\tTimestamp: %s\n\t\tTarget: %s\n\t\tNonce: %s\n",
+                prevHash, merkleRoot, String.valueOf(timestamp), this.diffTarget.toString(16), nonce);
+    }
+
+    public Boolean checkNonce() {
         String concat = "";
         try {
-            concat = Encrypt.toHexString(Encrypt.getSHA(merkleRoot + nonce));
+            concat = Encrypt.toHexString(Encrypt.getSHA(this.merkleRoot + this.nonce));
         } catch (NoSuchAlgorithmException e) {
-            System.err.println("Unable to get SHA-256 hash for leaf nodes");
+            System.err.println("ERROR: Unable to get SHA-256 hash");
             System.exit(1);
         }
 
-        BigInteger target = BigInteger.ONE.shiftLeft(256).subtract(BigInteger.ONE)
-                .divide(new BigInteger(String.valueOf((int) (1 / SUCCESS_RATE))));
-
-        BigInteger checkHash = new BigInteger(concat);
+        BigInteger checkHash = new BigInteger(concat, 16);
         // 1 - >
         // 0 - =
         // -1 - <
-        if (checkHash.compareTo(target) <= 0) {
+        if (checkHash.compareTo(this.diffTarget) <= 0) {
             return true;
         }
         return false;

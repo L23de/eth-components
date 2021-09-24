@@ -25,7 +25,11 @@ public class Account {
         }
     }
 
+    public boolean exist() {
+        return address == null;
+    }
+
     public String toString() {
-        return String.format("Address: %s\nBalance: %s\nHash: %s\n\n", address, balance, hash);
+        return String.format("\t\tAddress: %s\n\t\tBalance: %s\n\t\tHash: %s\n\n", address, balance, hash);
     }
 }

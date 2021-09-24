@@ -9,8 +9,8 @@ def createSamples(file, lines: int):
         file.write(hash)
         file.write(" ")
         file.write(str(random.randrange(0, 999)))
-        file.write("\0")
+        file.write("\n")
 
-file = open("ledger.txt", "w")
+file = open("ledger2.txt", "w")
 createSamples(file, 20)
 
