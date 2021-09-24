@@ -1,4 +1,4 @@
-// package merkle_root.code;
+package merkle_root.code;
 
 import java.util.ArrayList;
 
@@ -19,7 +19,7 @@ public class App {
         // Each element in the ledger is a concatenated string of the balance and
         // transaction
         ArrayList<Account> ledger = Input.parseFile(args[0]);
-        // Print out the ledger (ArrayList) using prebuild toString() method
+        // Print out the ledger (ArrayList) using prebuilt toString() method
         System.out.println(ledger.toString());
         System.out.println("Merkle Root: " + Hash.getMerkleRoot(ledger, 0, ledger.size() - 1));
     }
