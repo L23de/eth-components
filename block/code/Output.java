@@ -7,7 +7,10 @@ import java.io.IOException;
 
 public class Output {
     public static void writeFile(String fileName, String toWrite) {
-        String newFileName = fileName.replace(".txt", "") + ".block.out";
+        System.out.println(fileName);
+        String newFileName = fileName.replace(".txt", "");
+        newFileName = newFileName.replace("files/", "") + ".block.out";
+        System.out.println(newFileName);
         File file = new File(newFileName);
         FileWriter scribe = null;
         try {
@@ -15,11 +18,10 @@ public class Output {
             scribe = new FileWriter(file);
             scribe.write(toWrite);
             scribe.close();
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.err.println("ERROR: Unable to create new file");
             e.printStackTrace();
         }
-        
-    
+
     }
 }

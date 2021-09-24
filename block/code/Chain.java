@@ -16,14 +16,14 @@ public class Chain {
             output.append(block.toString());
             output.append("\tEND HEADER\n");
             if (verbosity) {
-                output.append("\tBEGIN LEDGER\n");
+                output.append("\tBEGIN BODY\n");
                 ArrayList<Account> accList = block.accountList;
                 for (int j = 0; j < accList.size(); j++) {
                     if (accList.get(j).exist())
                         continue;
                     output.append("\t\t\t{}\n".format(accList.get(j).toString()));
                 }
-                output.append("\tEND LEDGER\n");
+                output.append("\tEND BODY\n");
             }
             output.append("END BLOCK\n\n");
         }
