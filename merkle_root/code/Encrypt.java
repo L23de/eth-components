@@ -9,7 +9,7 @@ import java.security.NoSuchAlgorithmException;
  * Calculate SHA-256 for a given string
  * Source: https://www.geeksforgeeks.org/sha-256-hash-in-java/
  */
-class Encrypt {
+public class Encrypt {
     public static byte[] getSHA(String input) throws NoSuchAlgorithmException {
         // Static getInstance method is called with hashing SHA
         MessageDigest md = MessageDigest.getInstance("SHA-256");

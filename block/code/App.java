@@ -16,11 +16,14 @@ public class App {
         LinkedList<Block> chain = new LinkedList<Block>();
         String prevHash = "0"; // For genesis block, will be updated on addition of blocks
 
-        for (int i = 0; i <= argLength; i++) {
+        for (int i = 0; i <= args.length; i++) {
             ArrayList<Account> ledger = Input.parseFile(args[i]);
-            String merkleRoot = Hash.getMerkleRoot(ledger, 0, ledger.size() - 1);
+            String merkRoot = Hash.getMerkleRoot(ledger, 0, ledger.size() - 1);
             // TODO: Set prevHash to previous block's header's hash
-            chain.addFirst(new Block(prevHash, merkleRoot));
+            Block block = new Block(prevHash, merkRoot);
+            // prevHash = Hash.getMerkleRoot(ledger, start, end);
+
+            chain.addFirst(block);
         }
     }
 }
