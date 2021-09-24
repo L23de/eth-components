@@ -16,4 +16,4 @@ def createSamples(filename: str):
 
 if __name__ == "__main__":
     for i in range(FILE_COUNT):
-        createSamples("files/ledger" + str(i) + ".txt")
+        createSamples("block/files/ledger" + str(i) + ".txt")

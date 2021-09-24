@@ -7,10 +7,8 @@ import java.io.IOException;
 
 public class Output {
     public static void writeFile(String fileName, String toWrite) {
-        System.out.println(fileName);
         String newFileName = fileName.replace(".txt", "");
-        newFileName = newFileName.replace("files/", "") + ".block.out";
-        System.out.println(newFileName);
+        newFileName = newFileName.replace("block/files/", "") + ".block.out";
         File file = new File(newFileName);
         FileWriter scribe = null;
         try {
