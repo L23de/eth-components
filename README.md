@@ -6,11 +6,10 @@ Implementing the basic parts of a blockchain (Ethereum/Blockchain-based)
 
 For each component, there is a respective branch to learn more about it
 
-Inside each branch, there will be a couple of `sh` files and a `sample-generator.py` file
+Inside each branch, there will be a `Makefile`
 
- - `sample-generator.py` is used to create sample file(s) as input for App.java
- - `recompile.sh` is used to recompile the Java files
- - `run.sh` is used to run App.java (There may be some variations of the `run` script)
+- `make` or `make all` is used to setup everything and run the program
+- `make clean` is used to remove everything created for `make` and reset to just the code
 
 ## Components
 
