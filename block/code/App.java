@@ -29,12 +29,12 @@ public class App {
 
             Block block = new Block(prevHash, merkleRoot, Block.genNonce(), ledger);
             while (!block.checkNonce()) {
-                System.out.println("Try again");
+                // System.out.println("Try again");
                 block.nonce = Block.genNonce();
             }
-            System.out.println("");
+            // System.out.println("");
 
-            // Thread.sleep(500);
+            // Thread.sleep(500); // Used to check if the time actually updates
 
             // Gets current block's hash for the next block
             try {
