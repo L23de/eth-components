@@ -3,7 +3,7 @@ all: run
 clean: reset-io rm-class
 
 get-samples:
-	python sample-generator.py
+	python3 sample-generator.py
 
 recompile:
 	javac block/code/*.java

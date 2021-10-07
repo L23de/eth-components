@@ -5,7 +5,7 @@ STRING_LEN = 40
 NUM_ACCOUNTS = 5
 FILE_COUNT = 5
 
-def createSamples(filename: str):
+def createSamples(filename):
     file = open(filename, "w")
     for _ in range(NUM_ACCOUNTS):
         hash = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(STRING_LEN))
