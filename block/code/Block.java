@@ -65,4 +65,8 @@ public class Block {
         }
         return newNonce.toString();
     }
+
+    public ArrayList<Account> getAccountList() {
+        return accountList;
+    }
 }
