@@ -1,5 +1,6 @@
 package merkle_root.code;
 
+import block.code.*;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
@@ -40,5 +41,10 @@ public class Hash {
             System.exit(1);
         }
         return "";
+    }
+
+    public static ArrayList<String> getMembershipProof(ArrayList<Account> accList) {
+        ArrayList<String> proof;
+        return proof;
     }
 }
