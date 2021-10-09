@@ -65,4 +65,12 @@ public class Block {
         }
         return newNonce.toString();
     }
+
+    public String getMerkleRoot() {
+        return merkleRoot;
+    }
+
+    public String getPrevHash() {
+        return prevHash;
+    }
 }
