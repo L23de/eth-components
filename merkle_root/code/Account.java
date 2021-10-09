@@ -32,4 +32,12 @@ public class Account {
     public String toString() {
         return String.format("\t\tAddress: %s\n\t\tBalance: %s\n\t\tHash: %s\n\n", address, balance, hash);
     }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getBalance() {
+        return balance;
+    }
 }

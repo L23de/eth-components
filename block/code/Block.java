@@ -73,4 +73,7 @@ public class Block {
     public String getPrevHash() {
         return prevHash;
     }
+    public ArrayList<Account> getAccountList() {
+        return accountList;
+    }
 }
