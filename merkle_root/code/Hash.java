@@ -48,9 +48,32 @@ public class Hash {
         return merkleTree;
     }
 
-    // public static ArrayList<String> getMembershipProof(ArrayList<Account>
-    // accList) {
-    // ArrayList<String> proof;
-    // return proof;
-    // }
+    public static ArrayList<String> getMembershipProof(ArrayList<Account> accList, String address, int idx) {
+        ArrayList<String> proof = new ArrayList<>();
+
+        // Gets merkle tree
+        String[] merkleTree = getMerkleTree(accList, accList.size()-1);
+
+        int index = idx;
+        while (index > 0) {
+            proof.add(merkleTree[index]);
+            proof.add(merkleTree[getSiblingIdx(index)]);
+            index = getParentIdx(index); // Should always terminate at 0
+        }
+        // Add the merkleRoot at the end
+        proof.add(merkleTree[0]);
+        
+        return proof;
+    }
+
+    public static int getParentIdx(int currIdx) {
+        return (currIdx - 1) / 2;
+    }
+
+    public static int getSiblingIdx(int currIdx) {
+        if (currIdx % 2 == 0) { // If even
+            return currIdx - 1;
+        }
+        return currIdx + 1;
+    }
 }
