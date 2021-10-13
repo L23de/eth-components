@@ -43,8 +43,8 @@ public class Hash {
         return "";
     }
 
-    public static ArrayList<String> getMembershipProof(ArrayList<Account> accList) {
-        ArrayList<String> proof;
-        return proof;
-    }
+    // public static ArrayList<String> getMembershipProof(ArrayList<Account> accList) {
+    //     ArrayList<String> proof;
+    //     return proof;
+    // }
 }

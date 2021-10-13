@@ -18,7 +18,7 @@ public class Input {
      * @return: myChain LinkedList of block contents
      */
 
-    public static LinkedList<Block> parseFile(String filename) {
+    public static LinkedList<Block> parseBlockFile(String filename) {
         // The file object to read from
         File myFile = new File(filename);
         Scanner fileScanner = null;
@@ -35,14 +35,14 @@ public class Input {
 
         while (fileScanner.hasNextLine()) {
             String data = fileScanner.nextLine();
-            System.out.println("BLock begin scanned is " + data);
+            //System.out.println("BLock begin scanned is " + data);
 
             if (data.compareTo("BEGIN BLOCK") == 0) {
               data = fileScanner.nextLine();
               if (data.compareTo("\tBEGIN HEADER") == 0) {
-                  System.out.println("Header begin is " + data);
+                  //System.out.println("Header begin is " + data);
                   data = fileScanner.nextLine();
-                  System.out.println("Next line is " + data);
+                  //System.out.println("Next line is " + data);
                   if (data.startsWith("\t\tPrevious Hash: ")) {
                     String prevHash = data.split(": ")[1];
                     //System.out.println("\n\n\n\n -----Prev Hash " + prevHash);
@@ -81,6 +81,7 @@ public class Input {
                                 }
                             }
                         }
+                        System.out.println();
                         Block newBlock = new Block(prevHash, merkleRoot, nonce, acc);
                         myChain.push(newBlock);
                         data = fileScanner.nextLine(); // END BLOCK

@@ -7,6 +7,7 @@ get-samples:
 
 recompile:
 	javac block/code/*.java
+	javac validation/code/*.java
 
 reset-io:
 	find . -type f -name "*.txt" -delete
