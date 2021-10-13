@@ -25,7 +25,8 @@ public class App {
             }
 
             ArrayList<Account> ledger = Input.parseFile(args[i]);
-            String merkleRoot = Hash.getMerkleRoot(ledger, 0, ledger.size() - 1);
+            String[] merkleTree = Hash.getMerkleTree(ledger, ledger.size() - 1);
+            String merkleRoot = merkleTree[0];
 
             Block block = new Block(prevHash, merkleRoot, Block.genNonce(), ledger);
             while (!block.checkNonce()) {

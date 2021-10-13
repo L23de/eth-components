@@ -16,8 +16,8 @@ reset-io:
 rm-class:
 	find . -type f -name "*.class" -delete
 
-run: recompile reset-io get-samples
-	sh run.sh
+new-chain: recompile reset-io get-samples
+	sh gen-chain.sh
 
-run-verbose: recompile reset-io get-samples
-	sh run-verbose.sh
+run: new-chain
+	java validation/code/App

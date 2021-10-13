@@ -35,7 +35,6 @@ public class Input {
 
         while (fileScanner.hasNextLine()) {
             String data = fileScanner.nextLine();
-            //System.out.println("BLock begin scanned is " + data);
 
             if (data.compareTo("BEGIN BLOCK") == 0) {
               data = fileScanner.nextLine();
@@ -47,7 +46,7 @@ public class Input {
                     String prevHash = data.split(": ")[1];
                     //System.out.println("\n\n\n\n -----Prev Hash " + prevHash);
                     data = fileScanner.nextLine();
-                     
+
                     if (data.startsWith("\t\tMerkle Root: ")) {
                     String merkleRoot = data.split(": ")[1];
                     //System.out.println("\n\n\n\n -----merkle root " + merkleRoot);
@@ -62,7 +61,7 @@ public class Input {
                         data = fileScanner.nextLine(); // END HEADER
                         data = fileScanner.nextLine(); // BEGIN BODY
 
-                        ArrayList<Account> acc = new ArrayList();
+                        ArrayList<Account> acc = new ArrayList<>();
                         while (data.compareTo("\tEND BODY") != 0) {
                             data = fileScanner.nextLine();
                             if (data.startsWith("\t\tAddress: ")) {
@@ -75,7 +74,7 @@ public class Input {
                                   //System.out.println("\n\n\n\n -----balance " + balance);
 
                                   String entry = address + " " + balance;
-                                  System.out.println("entry " + entry);
+                                  //System.out.println("entry " + entry);
                                   Account accountEntry = new Account(entry);
                                   acc.add(accountEntry);
                                 }
@@ -97,7 +96,5 @@ public class Input {
         // close the file scanner
         fileScanner.close();
         return myChain;
-
     }
-    
 }
