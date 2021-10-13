@@ -1,30 +1,21 @@
 package validation.code;
 
-import merkle_root.code.*;
 import block.code.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.LinkedList;
-import java.util.ListIterator;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) throws InterruptedException {
-
-        int argLength = args.length;
-        if (argLength < 1) {
-            System.err.println(
-                    "Not enough arguments were provided. Please provide the filenames containing addresses and balances");
+        if (args.length != 2) {
+            System.err.println("Please provide the filename (*.block.out) and address of member");
             System.exit(1);
         }
 
-        LinkedList<Block> blockchain = new LinkedList<Block>();
+        LinkedList<Block> blockchain = Input.parseFile(args[0]); // Load in the block
+        String address = args[1]; // Address of the block
 
-        for (int i = 0; i < args.length; i++) {
+        List<Object> list = Validate.getBalance(blockchain, address);
 
-            Input.parseFile(args[i]);
-        }
-
+        System.out.println(list);
     }
 }
