@@ -19,8 +19,8 @@ public class Chain {
                 output.append("\tBEGIN BODY\n");
                 ArrayList<Account> accList = block.accountList;
                 for (int j = 0; j < accList.size(); j++) {
-                    if (accList.get(j).exist())
-                        continue;
+                    // if (accList.get(j).exist())
+                    //     continue;
                     output.append("\t\t\t{}\n".format(accList.get(j).toString()));
                 }
                 output.append("\tEND BODY\n");
