@@ -38,17 +38,12 @@ public class App {
             // Thread.sleep(500); // Used to check if the time actually updates
 
             // Gets current block's hash for the next block
-            try {
-                prevHash = Encrypt.toHexString(Encrypt.getSHA(block.toString()));
-            } catch (NoSuchAlgorithmException e) {
-                System.err.println("ERROR: Unable to get SHA-256 hash");
-                System.exit(1);
-            }
+            prevHash = Hash.hashObj(block.toString());
 
             chain.addFirst(block);
         }
         String output = Chain.chainFormat(chain, verbosity);
         // System.out.println(output);
-        Output.writeFile(args[0], output);
+        Output.writeFile(args[0].equals("--verbose") || args[0].equals("-v") ? args[0]: args[1], output);
     }
 }

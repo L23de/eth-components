@@ -6,6 +6,7 @@ import block.code.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.ListIterator;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 public class Validate {
@@ -52,10 +53,14 @@ public class Validate {
         // proof will contain both the balance of the address and the proof of
         // membership
         List<Object> proof = getProof(blockchain, address);
-        return Arrays.asList(proof != null ? true : false, proof.get(0), proof.get(1));
+        if (proof == null) {
+            return Arrays.asList(false, null, null, null);
+        }
+        return Arrays.asList(true, proof.get(0), proof.get(1), proof.get(2));
     }
 
-    public static List<Object> getProof(LinkedList<Block> blockchain, String address) {
+    public static <T> List<Object> getProof(LinkedList<Block> blockchain, String address) {
+        Block block;
         String balance = "";
         int index = 0;
 
@@ -63,24 +68,47 @@ public class Validate {
         ListIterator<Block> iterator = blockchain.listIterator();
         for (int i = 0; i < blockchain.size(); i++) {
             // Gets the account list from each block
-            ArrayList<Account> accountList = iterator.next().getAccountList();
+            block = iterator.next();
+            ArrayList<Account> accountList = block.getAccountList();
             // Iterates through the accountList to check if address in a member
             // TODO: Can modify so that the accountList is sorted in such a way so we can
             // more efficiently find address
             for (int j = 0; j < accountList.size(); j++) {
                 Account acc = accountList.get(j);
-                System.out.println(acc.getAddress());
+                // System.out.println(acc.getAddress());
                 // If address matches, hold the address' balance and index of the address
                 if (address.equals(acc.getAddress())) {
                     balance = acc.getBalance();
                     index = j;
+                    break;
                 }
             }
 
             // Get membership proof
             if (!balance.isEmpty()) {
+                ArrayList<Hashtable<String, String>> headers = new ArrayList<Hashtable<String, String>>();
+
+                while (true) { // Iterates to the most current (beginning of the ArrayList)
+
+                    Hashtable<String, String> header = new Hashtable<>();
+                    header.put("prevHash", block.getPrevHash());
+                    header.put("merkleRoot", block.getMerkleRoot());
+                    header.put("timestamp", block.getTimestamp());
+                    header.put("diffTarget", block.getDiffTarget());
+                    header.put("nonce", block.getNonce());
+                    if (iterator.hasNext()) {
+                        block = iterator.next();
+                        header.put("hash", block.getPrevHash());
+                    } else { // Break out of the infinite loop when reaches the head of the ArrayList
+                        header.put("hash", Hash.hashObj(block.toString()));
+                        headers.add(header);
+                        break;
+                    }
+                    headers.add(header);
+                }
+
                 // Only if balance was set in the previous for loop
-                return Arrays.asList(balance, Hash.getMembershipProof(accountList, address, index));
+                return Arrays.asList(balance, Hash.getMembershipProof(accountList, address, index), headers);
             }
         }
 

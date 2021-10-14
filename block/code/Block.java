@@ -66,12 +66,24 @@ public class Block {
         return newNonce.toString();
     }
 
+    public String getPrevHash() {
+        return prevHash;
+    }
+
     public String getMerkleRoot() {
         return merkleRoot;
     }
 
-    public String getPrevHash() {
-        return prevHash;
+    public String getTimestamp() {
+        return String.valueOf(timestamp);
+    }
+
+    public String getDiffTarget() {
+        return diffTarget.toString(16);
+    }
+
+    public String getNonce() {
+        return nonce;
     }
 
     public ArrayList<Account> getAccountList() {

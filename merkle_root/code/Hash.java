@@ -36,23 +36,27 @@ public class Hash {
                 merkleTree[i] = "";
             } else {
                 // Get the SHA-256 hash
-                try {
-                    merkleTree[i] = Encrypt.toHexString(Encrypt.getSHA(concatHash));
-                } catch (NoSuchAlgorithmException e) {
-                    System.err.println("ERROR: Unable to get SHA-256 hash");
-                    System.exit(1);
-                }
+                merkleTree[i] = hashObj(concatHash);
             }
         }
-
         return merkleTree;
+    }
+
+    public static <T> String hashObj(String obj) {
+        try {
+            return Encrypt.toHexString(Encrypt.getSHA(obj));
+        } catch (NoSuchAlgorithmException e) {
+            System.err.println("ERROR: Unable to get SHA-256 hash");
+            System.exit(1);
+        }
+        return ""; // Should not reach here
     }
 
     public static ArrayList<String> getMembershipProof(ArrayList<Account> accList, String address, int idx) {
         ArrayList<String> proof = new ArrayList<>();
 
         // Gets merkle tree
-        String[] merkleTree = getMerkleTree(accList, accList.size()-1);
+        String[] merkleTree = getMerkleTree(accList, accList.size() - 1);
 
         int index = idx;
         while (index > 0) {
@@ -62,7 +66,7 @@ public class Hash {
         }
         // Add the merkleRoot at the end
         proof.add(merkleTree[0]);
-        
+
         return proof;
     }
 

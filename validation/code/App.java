@@ -1,8 +1,7 @@
 package validation.code;
 
 import block.code.*;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class App {
     public static void main(String[] args) throws InterruptedException {
@@ -16,6 +15,9 @@ public class App {
 
         List<Object> list = Validate.getBalance(blockchain, address);
 
-        System.out.println(list);
+        System.out.println(list.get(0)); // Boolean
+        System.out.println(list.get(1)); // Balance (int)
+        System.out.println(list.get(2)); // Proof (ArrayList<String>)
+        System.out.println(list.get(3)); // Headers (ArrayList<Hashtable<String, String>>)
     }
 }

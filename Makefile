@@ -1,9 +1,9 @@
-all: run
+all: run-true
 
 clean: reset-io rm-class
 
 get-samples:
-	python3 sample-generator.py
+	python sample-generator.py
 
 recompile:
 	javac block/code/*.java
@@ -17,7 +17,10 @@ rm-class:
 	find . -type f -name "*.class" -delete
 
 new-chain: recompile reset-io get-samples
-	sh genChain.sh
+	sh gen_chain.sh
 
-run: new-chain
-	java validation/code/App
+run-true: new-chain
+	java validation/code/App `find . -name "*.block.out"` `python getRandomAddress.py`
+
+run-false: new-chain
+	java validation/code/App `find . -name "*.block.out"` thiswontwork
