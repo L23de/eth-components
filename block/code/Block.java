@@ -31,6 +31,7 @@ public class Block {
         return String.format(
                 "\t\tPrevious Hash: %s\n\t\tMerkle Root: %s\n\t\tTimestamp: %s\n\t\tTarget: %s\n\t\tNonce: %s\n",
                 prevHash, merkleRoot, String.valueOf(timestamp), this.diffTarget.toString(16), nonce);
+        // return String.format("Merkle Root: %s\n", merkleRoot);
     }
 
     public Boolean checkNonce() {

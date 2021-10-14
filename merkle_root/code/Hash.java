@@ -42,7 +42,7 @@ public class Hash {
         return merkleTree;
     }
 
-    public static <T> String hashObj(String obj) {
+    public static String hashObj(String obj) {
         try {
             return Encrypt.toHexString(Encrypt.getSHA(obj));
         } catch (NoSuchAlgorithmException e) {
@@ -67,8 +67,26 @@ public class Hash {
         // Add the merkleRoot at the end
         proof.add(merkleTree[0]);
 
+        System.out.println("Account List:\n");
+        for (Account acc : accList) {
+            System.out.println(acc.hash);
+        }
+        System.out.println("\n");
+        System.out.println("Merkle Tree:\n");
+        for (String leaf : merkleTree) {
+            System.out.println(leaf);
+        }
+        System.out.println("\n");
+        System.out.println("\n");
+
+
         return proof;
     }
+    // public static ArrayList<String> getMembershipProof(ArrayList<Account>
+    // accList) {
+    // ArrayList<String> proof;
+    // return proof;
+    // }
 
     public static int getParentIdx(int currIdx) {
         return (currIdx - 1) / 2;
@@ -80,4 +98,5 @@ public class Hash {
         }
         return currIdx + 1;
     }
+
 }

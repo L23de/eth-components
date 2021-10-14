@@ -12,7 +12,7 @@ import java.util.*;
 public class Validate {
 
     // Check if the input block's merkle root matches with any of those in the chain
-    public boolean checkBlock(LinkedList<Block> chain, Block inputBlock) {
+    public static boolean checkBlock(LinkedList<Block> chain, Block inputBlock) {
 
         ListIterator<Block> iterator = chain.listIterator();
         for (int i = 0; i < chain.size(); i++) {
@@ -25,7 +25,8 @@ public class Validate {
         return false;
     }
 
-    public boolean checkChain(LinkedList<Block> chain, LinkedList<Block> inputChain) {
+
+    public static boolean checkChain(LinkedList<Block> chain, LinkedList<Block> inputChain) {
         ListIterator<Block> iterator1 = chain.listIterator();
         ListIterator<Block> iterator2 = inputChain.listIterator();
         if (chain.size() != inputChain.size()) {
@@ -115,4 +116,5 @@ public class Validate {
         // If item does not exist at all in the blockchain, return null
         return null;
     }
+
 }
