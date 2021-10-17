@@ -24,3 +24,6 @@ run-true: new-chain
 
 run-false: new-chain
 	java -cp . validation/code/App `find . -name "*.block.out"` thiswillnotwork
+
+run-validate: new-chain
+	java -cp . validation/code/App `find . -name "*.block.out"`
