@@ -80,7 +80,7 @@ public class Input {
                     }
                   }
                 }
-                System.out.println();
+                // System.out.println();
                 Block newBlock = new Block(prevHash, merkleRoot, nonce, acc);
 
                 myChain.push(newBlock);
