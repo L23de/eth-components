@@ -3,7 +3,6 @@ package block.code;
 import merkle_root.code.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
-import java.security.NoSuchAlgorithmException;
 
 public class App {
     public static void main(String[] args) throws InterruptedException {

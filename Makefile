@@ -1,9 +1,10 @@
-all: new-chain new-chain run-true
+all: new-chain addr-validate-true chain-validate
 
 clean: reset-io rm-class
 
 get-samples:
 	python sample-generator.py
+	python bad-block-generator.py
 
 recompile:
 	javac block/code/App.java
@@ -12,6 +13,7 @@ recompile:
 reset-io:
 	find . -type f -name "*.txt" -delete
 	find . -type f -name "*.out" -delete
+	find . -type f -name "badBlock" -delete
 
 rm-class:
 	find . -type f -name "*.class" -delete
@@ -19,11 +21,11 @@ rm-class:
 new-chain: recompile reset-io get-samples
 	java block/code/App `find ./block/files -name "*.txt"` --verbose
 
-run-true: 
+addr-validate-true: 
 	java validation/code/App `find . -name "*.block.out"` `python getRandomAddress.py`
 
-run-false: 
+addr-validate-false: 
 	java validation/code/App `find . -name "*.block.out"` thiswillnotwork
 
-run-validate: new-chain
+chain-validate:
 	java validation/code/App `find . -name "*.block.out"`

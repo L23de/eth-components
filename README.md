@@ -26,7 +26,6 @@ App.java under `validation` can take in 1 or 2 arguments which dictates what App
   - If it exists in the blockchain, a proof of membership and header trail is provided for a light node or user to verify validity
   - If it doesn't exist, return false and `null` items
 
-
 `sample-generator.py` will generate sample text files under `block/files` labelled ledgerX.txt with X being an integer up to 5 (by default). The python file has configuration variables at the top
 
 `bad-block-generator.py` will generate a bad block to test for a incorrect block validation (Block should not exist in the blockchain)

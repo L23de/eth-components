@@ -6,7 +6,6 @@ import block.code.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.ListIterator;
-import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 public class Validate {
