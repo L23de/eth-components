@@ -76,9 +76,7 @@ public class Hash {
         for (String leaf : merkleTree) {
             System.out.println(leaf);
         }
-        System.out.println("\n");
-        System.out.println("\n");
-
+        System.out.println();
 
         return proof;
     }

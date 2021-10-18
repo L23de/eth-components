@@ -20,7 +20,10 @@ new-chain: recompile reset-io get-samples
 	java block/code/App `find ./block/files -name "*.txt"` --verbose
 
 run-true: 
-	java validation/code/App `find . -name "*.block.out"` `python getRandomAddress.py` -cp ./gson.jar
+	java validation/code/App `find . -name "*.block.out"` `python getRandomAddress.py`
 
 run-false: 
-	java -cp . validation/code/App `find . -name "*.block.out"` thiswillnotwork
+	java validation/code/App `find . -name "*.block.out"` thiswillnotwork
+
+run-validate: new-chain
+	java validation/code/App `find . -name "*.block.out"`
