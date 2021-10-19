@@ -1,4 +1,4 @@
-all: new-chain addr-validate-true chain-validate
+all: new-chain addr-validate-true chain-validate-true
 
 clean: reset-io rm-class
 
@@ -27,9 +27,8 @@ addr-validate-true:
 addr-validate-false: 
 	java validation/code/App `find . -name "*.block.out"` thiswillnotwork
 
-chain-validate:
+chain-validate-true:
 	java validation/code/App `find . -name "*.block.out"`
-	java validation/code/App badChain
 
-bad-chain-validate:
+chain-validate-false:
 	java validation/code/App badChain

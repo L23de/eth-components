@@ -24,26 +24,25 @@ public class Validate {
         return false;
     }
 
-
     public static boolean checkChain(LinkedList<Block> chain) {
         // ListIterator<Block> iterator1 = chain.listIterator();
         // ListIterator<Block> iterator2 = inputChain.listIterator();
         // if (chain.size() != inputChain.size()) {
-        //     return false;
+        // return false;
         // }
 
         // for (int i = 0; i < chain.size(); i++) {
-        //     Block block1 = iterator1.next();
-        //     Block block2 = iterator2.next();
-        //     if (block1.getMerkleRoot().compareTo(block2.getMerkleRoot()) == 0) {
-        //         if (block1.getPrevHash().compareTo(block2.getPrevHash()) == 0) {
-        //             continue;
-        //         } else {
-        //             return false;
-        //         }
-        //     } else {
-        //         return false;
-        //     }
+        // Block block1 = iterator1.next();
+        // Block block2 = iterator2.next();
+        // if (block1.getMerkleRoot().compareTo(block2.getMerkleRoot()) == 0) {
+        // if (block1.getPrevHash().compareTo(block2.getPrevHash()) == 0) {
+        // continue;
+        // } else {
+        // return false;
+        // }
+        // } else {
+        // return false;
+        // }
         // }
 
         // return true;
@@ -65,9 +64,15 @@ public class Validate {
             if (currHash.equals(currBlock.getPrevHash())) {
                 // Get the hash for the current block
                 currHash = Hash.hashObj(currBlock.toString());
+                System.out.println(currHash);
+                System.out.println(Hash.hashObj(currBlock.toString()));
+                System.out.println(Hash.hashObj(currBlock.toString()));
+                System.out.println(Hash.hashObj(currBlock.toString()));
+                System.out.println(Hash.hashObj(currBlock.toString()));
+                System.out.println(Hash.hashObj(currBlock.toString()));
+
                 continue;
-            }
-            else {
+            } else {
                 return false;
             }
         }
