@@ -38,11 +38,11 @@ public class App {
             // Parse the block.out file generated from HW4
             blockchain = Input.parseBlockFile(args[0]);
 
-            validateDriver(blockchain, testchain);
+            validateDriver(blockchain);
         }
     }
 
-    static void validateDriver(LinkedList<Block> blockchain, LinkedList<Block> testchain) {
+    static void validateDriver(LinkedList<Block> blockchain) {
         // Create arrays of accounts from ledger text files
         ArrayList<Account> ledger = merkle_root.code.Input.parseFile("block/files/ledger0.txt");
         // Bad block is just a previously-generated block
@@ -69,18 +69,12 @@ public class App {
         System.out
                 .println("Good Block Validation: " + (Validate.checkBlock(blockchain, block1) ? "Success" : "Failure"));
 
-        // Create a test blockchain with the blocks from above
-        // testChain.push(block5);
-        // testChain.push(block4);
-        // testChain.push(block3);
-        // testChain.push(block2);
-        testchain.push(block1);
-
         // Check the blockchain based on their Merkle root and previous hash
         System.out.println();
+        // For our test cases based on inputs specified in the Makefile:
+        //      - the *.block.out files are good blockchains
+        //      - the badChain is a bad blockchain with bad previous Hash
         System.out.println(
-                "Bad Chain Validation: " + (Validate.checkChain(blockchain, testchain) ? "Success" : "Failure"));
-        System.out.println(
-                "Good Chain Validation: " + (Validate.checkChain(blockchain, blockchain) ? "Success" : "Failure"));
+               "Chain Validation: " + (Validate.checkChain(blockchain) ? "Success" : "Failure"));
     }
 }

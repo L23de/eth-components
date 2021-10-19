@@ -29,3 +29,7 @@ addr-validate-false:
 
 chain-validate:
 	java validation/code/App `find . -name "*.block.out"`
+	java validation/code/App badChain
+
+bad-chain-validate:
+	java validation/code/App badChain

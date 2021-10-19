@@ -25,23 +25,49 @@ public class Validate {
     }
 
 
-    public static boolean checkChain(LinkedList<Block> chain, LinkedList<Block> inputChain) {
-        ListIterator<Block> iterator1 = chain.listIterator();
-        ListIterator<Block> iterator2 = inputChain.listIterator();
-        if (chain.size() != inputChain.size()) {
-            return false;
-        }
+    public static boolean checkChain(LinkedList<Block> chain) {
+        // ListIterator<Block> iterator1 = chain.listIterator();
+        // ListIterator<Block> iterator2 = inputChain.listIterator();
+        // if (chain.size() != inputChain.size()) {
+        //     return false;
+        // }
 
+        // for (int i = 0; i < chain.size(); i++) {
+        //     Block block1 = iterator1.next();
+        //     Block block2 = iterator2.next();
+        //     if (block1.getMerkleRoot().compareTo(block2.getMerkleRoot()) == 0) {
+        //         if (block1.getPrevHash().compareTo(block2.getPrevHash()) == 0) {
+        //             continue;
+        //         } else {
+        //             return false;
+        //         }
+        //     } else {
+        //         return false;
+        //     }
+        // }
+
+        // return true;
+        ListIterator<Block> iterator = chain.listIterator();
+        String currHash = "0";
+
+        // Loop through every block in the blockchain
         for (int i = 0; i < chain.size(); i++) {
-            Block block1 = iterator1.next();
-            Block block2 = iterator2.next();
-            if (block1.getMerkleRoot().compareTo(block2.getMerkleRoot()) == 0) {
-                if (block1.getPrevHash().compareTo(block2.getPrevHash()) == 0) {
-                    continue;
-                } else {
-                    return false;
-                }
-            } else {
+            // Iterate each block
+            Block currBlock = iterator.next();
+
+            System.out.println("Curr Hash is " + currHash);
+            System.out.println("Prev Hash is " + currBlock.getPrevHash());
+            System.out.println("Curr block nonce " + currBlock.getNonce());
+            System.out.println(currBlock.toString());
+            System.out.println("--------------------------------------");
+
+            // Check if current block's previous hash equal to the previous block's hash
+            if (currHash.equals(currBlock.getPrevHash())) {
+                // Get the hash for the current block
+                currHash = Hash.hashObj(currBlock.toString());
+                continue;
+            }
+            else {
                 return false;
             }
         }
