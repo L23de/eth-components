@@ -146,5 +146,4 @@ public class Validate {
         // If item does not exist at all in the blockchain, return null
         return null;
     }
-
 }
