@@ -20,3 +20,7 @@ One of the core items in maintaining the verification property in the blockchain
 ### `block`
 
 More similar to a Bitcoin block, where it is based on proof of work (Solving for a nonce). This holds a collection of data, which hashes to a `merkle_root`, and are the singular elements of a blockchain
+
+### `validation`
+
+A core process in preserving the immutable nature of previous blocks is to only add blocks to valid blockchains. This function essentially "checks" the "chain links" between blocks and ensure that they are valid (merkle root of one correctly corresponds with the hash of the one that precedes it)
